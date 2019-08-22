@@ -1,0 +1,16 @@
+PODS:
+  - ChartsExtension (0.1.0)
+
+DEPENDENCIES:
+  - ChartsExtension (from `../`)
+
+EXTERNAL SOURCES:
+  ChartsExtension:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ChartsExtension: be4bff0fcbd565cce89042563ba0c9bba3ddd5fa
+
+PODFILE CHECKSUM: f8935017b6d9dbe22e47385017f4cc58320a376b
+
+COCOAPODS: 1.5.0

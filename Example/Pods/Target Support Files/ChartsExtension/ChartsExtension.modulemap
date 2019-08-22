@@ -1,0 +1,6 @@
+framework module ChartsExtension {
+  umbrella header "ChartsExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
