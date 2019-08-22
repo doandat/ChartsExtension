@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ChartsExtension_Example' do
+  pod 'ChartsExtension', :path => '../'
+
+  target 'ChartsExtension_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
