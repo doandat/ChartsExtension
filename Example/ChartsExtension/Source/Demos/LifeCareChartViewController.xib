@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LifeCareChartViewController" customModule="ChartsExtension_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="barChartView" destination="QQu-56-1di" id="kk4-0g-0KJ"/>
+                <outlet property="lineChartView" destination="NUr-X2-W8G" id="gpX-Ko-rPi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQu-56-1di" customClass="BarChartView" customModule="ChartsExtension">
+                    <rect key="frame" x="0.0" y="109" width="414" height="229"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUr-X2-W8G" customClass="LineChartView" customModule="ChartsExtension">
+                    <rect key="frame" x="0.0" y="109" width="414" height="229"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QQu-56-1di" secondAttribute="trailing" id="5XN-nj-weX"/>
+                <constraint firstAttribute="trailing" secondItem="NUr-X2-W8G" secondAttribute="trailing" id="CjH-VA-xSc"/>
+                <constraint firstItem="NUr-X2-W8G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Db8-NO-bD4"/>
+                <constraint firstItem="QQu-56-1di" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JsP-ts-xvK"/>
+                <constraint firstItem="NUr-X2-W8G" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="65" id="cBh-5s-Ezl"/>
+                <constraint firstItem="QQu-56-1di" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="65" id="d0Z-AE-N3v"/>
+                <constraint firstItem="NUr-X2-W8G" firstAttribute="width" secondItem="NUr-X2-W8G" secondAttribute="height" multiplier="414:229" id="uM4-wP-eoO"/>
+                <constraint firstItem="QQu-56-1di" firstAttribute="width" secondItem="QQu-56-1di" secondAttribute="height" multiplier="414:229" id="xVQ-z7-rje"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

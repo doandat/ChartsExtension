@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExamBarChartViewController" customModule="ChartsExtension_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="chartView" destination="cG2-9S-8dI" id="ps5-eP-cEM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4o-6P-xPB">
+                    <rect key="frame" x="316" y="74" width="78" height="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="7" maxX="10" maxY="7"/>
+                    <state key="normal" title="Options">
+                        <color key="titleColor" red="0.24040704969999999" green="0.48385584349999999" blue="0.68625134229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cG2-9S-8dI" customClass="BarChartView" customModule="ChartsExtension">
+                    <rect key="frame" x="0.0" y="129" width="414" height="229"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cG2-9S-8dI" secondAttribute="height" multiplier="414:229" id="K60-YT-9dq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cG2-9S-8dI" secondAttribute="trailing" id="Aog-9h-JuV"/>
+                <constraint firstItem="f4o-6P-xPB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="ECJ-by-4Ka"/>
+                <constraint firstItem="cG2-9S-8dI" firstAttribute="top" secondItem="f4o-6P-xPB" secondAttribute="bottom" constant="20" id="XJf-1Z-3ZA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="f4o-6P-xPB" secondAttribute="trailing" constant="20" id="usA-aG-kkv"/>
+                <constraint firstItem="cG2-9S-8dI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yNV-0B-WOk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="118.84057971014494" y="35.491071428571423"/>
+        </view>
+    </objects>
+</document>
