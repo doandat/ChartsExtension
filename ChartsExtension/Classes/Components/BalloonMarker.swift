@@ -224,7 +224,7 @@ open class BalloonMarker: MarkerImage
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
         if let str = entry.data as? String {
-            setLabel(String(entry.y) + " " + str)
+            setLabel(str)
         }
     }
     
