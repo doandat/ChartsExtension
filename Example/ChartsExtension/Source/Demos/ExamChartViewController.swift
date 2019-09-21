@@ -223,7 +223,7 @@ extension ExamChartViewController {
             leftAxis.axisMaximum = maxValueDisplay
             leftAxis.axisMinimum = -leftAxis.axisMaximum
             leftAxis.labelCount = 4
-            leftAxis.chartExamType3 = true
+//            leftAxis.chartExamType3 = true
         } else if chartType == 4 {
 //            let ll1 = ChartLimitLine(limit: 40, label: "Upper Limit")
 //            ll1.lineWidth = 1

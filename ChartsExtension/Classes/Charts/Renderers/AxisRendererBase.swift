@@ -14,7 +14,7 @@ import UIKit
 import CoreGraphics
 
 @objc(ChartAxisRendererBase)
-open class AxisRendererBase: Renderer
+open class computeAxisValues: Renderer
 {
     /// base axis this axis renderer works with
     @objc open var axis: AxisBase?
@@ -109,26 +109,28 @@ open class AxisRendererBase: Renderer
         let rawInterval = range / Double(labelCount)
 //        var interval = rawInterval.roundedToNextSignficant()
         var interval = rawInterval
-        if !axis.chartExamType3 {
+
+        if !axis.isForceLabelCount {
             interval = rawInterval.roundedToNextSignficant()
+            
+            // If granularity is enabled, then do not allow the interval to go below specified granularity.
+            // This is used to avoid repeated values when rounding values for display.
+            if axis.granularityEnabled
+            {
+                interval = interval < axis.granularity ? axis.granularity : interval
+            }
+            
+            // Normalize interval
+            let intervalMagnitude = pow(10.0, Double(Int(log10(interval)))).roundedToNextSignficant()
+            let intervalSigDigit = Int(interval / intervalMagnitude)
+            if intervalSigDigit > 5
+            {
+                // Use one order of magnitude higher, to avoid intervals like 0.9 or 90
+                // if it's 0.0 after floor(), we use the old value
+                interval = floor(10.0 * intervalMagnitude) == 0.0 ? interval : floor(10.0 * intervalMagnitude)
+            }
         }
         
-        // If granularity is enabled, then do not allow the interval to go below specified granularity.
-        // This is used to avoid repeated values when rounding values for display.
-        if axis.granularityEnabled
-        {
-            interval = interval < axis.granularity ? axis.granularity : interval
-        }
-        
-        // Normalize interval
-        let intervalMagnitude = pow(10.0, Double(Int(log10(interval)))).roundedToNextSignficant()
-        let intervalSigDigit = Int(interval / intervalMagnitude)
-        if intervalSigDigit > 5
-        {
-            // Use one order of magnitude higher, to avoid intervals like 0.9 or 90
-            // if it's 0.0 after floor(), we use the old value
-            interval = floor(10.0 * intervalMagnitude) == 0.0 ? interval : floor(10.0 * intervalMagnitude)
-        }
         
         var n = axis.centerAxisLabelsEnabled ? 1 : 0
         

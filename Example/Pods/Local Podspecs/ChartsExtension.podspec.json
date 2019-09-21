@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "summary": "ChartsExtension is extension from Charts lib",
   "swift_versions": "5.0",
-  "description": "Add more point in xAxis",
+  "description": "ChartsExtension is extension from Charts lib - Use for Dr.HereOnline",
   "homepage": "https://github.com/doandat/ChartsExtension",
   "license": {
     "type": "MIT",
