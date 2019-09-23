@@ -196,14 +196,23 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             xAxisRenderer.computeAxis(min: _xAxis._axisMinimum, max: _xAxis._axisMaximum, inverted: false)
         }
         
-        xAxisRenderer.renderAxisLine(context: context)
-        leftYAxisRenderer.renderAxisLine(context: context)
-        rightYAxisRenderer.renderAxisLine(context: context)
+//        xAxisRenderer.renderAxisLine(context: context)
+//        leftYAxisRenderer.renderAxisLine(context: context)
+//        rightYAxisRenderer.renderAxisLine(context: context)
 
         // The renderers are responsible for clipping, to account for line-width center etc.
         xAxisRenderer.renderGridLines(context: context)
         leftYAxisRenderer.renderGridLines(context: context)
         rightYAxisRenderer.renderGridLines(context: context)
+        
+        xAxisRenderer.renderAxisLine(context: context)
+        leftYAxisRenderer.renderAxisLine(context: context)
+        rightYAxisRenderer.renderAxisLine(context: context)
+
+        xAxisRenderer.renderAxisLabels(context: context)
+        leftYAxisRenderer.renderAxisLabels(context: context)
+        rightYAxisRenderer.renderAxisLabels(context: context)
+
         
         if _xAxis.isEnabled && _xAxis.isDrawLimitLinesBehindDataEnabled
         {
@@ -246,9 +255,9 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             rightYAxisRenderer.renderLimitLines(context: context)
         }
         
-        xAxisRenderer.renderAxisLabels(context: context)
-        leftYAxisRenderer.renderAxisLabels(context: context)
-        rightYAxisRenderer.renderAxisLabels(context: context)
+//        xAxisRenderer.renderAxisLabels(context: context)
+//        leftYAxisRenderer.renderAxisLabels(context: context)
+//        rightYAxisRenderer.renderAxisLabels(context: context)
 
         if clipValuesToContentEnabled
         {

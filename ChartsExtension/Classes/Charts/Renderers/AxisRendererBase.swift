@@ -14,7 +14,7 @@ import UIKit
 import CoreGraphics
 
 @objc(ChartAxisRendererBase)
-open class computeAxisValues: Renderer
+open class AxisRendererBase: Renderer
 {
     /// base axis this axis renderer works with
     @objc open var axis: AxisBase?
@@ -109,10 +109,9 @@ open class computeAxisValues: Renderer
         let rawInterval = range / Double(labelCount)
 //        var interval = rawInterval.roundedToNextSignficant()
         var interval = rawInterval
-
+        
         if !axis.isForceLabelCount {
             interval = rawInterval.roundedToNextSignficant()
-            
             // If granularity is enabled, then do not allow the interval to go below specified granularity.
             // This is used to avoid repeated values when rounding values for display.
             if axis.granularityEnabled
@@ -132,6 +131,7 @@ open class computeAxisValues: Renderer
         }
         
         
+       // */
         var n = axis.centerAxisLabelsEnabled ? 1 : 0
         
         // force label count

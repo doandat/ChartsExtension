@@ -25,7 +25,6 @@ open class AxisBase: ComponentBase
     /// Custom formatter that is used instead of the auto-formatter if set
     private var _axisValueFormatter: IAxisValueFormatter?
     
-//    @objc open var chartExamType3 = false
     @objc open var isForceLabelCount = false
     
     @objc open var labelFont = NSUIFont.systemFont(ofSize: 10.0)
