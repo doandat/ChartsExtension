@@ -131,11 +131,20 @@ extension LifeCareChartViewController {
     
     func setDataBPM() {
         //        let values = [ChartDataEntry]()
+        let str = "2019/12/23: 23 mmHg"
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
+        paragraphStyle?.alignment = .center
+        let newAttributeStr = NSMutableAttributedString(string: str, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.paragraphStyle : paragraphStyle ?? NSParagraphStyle.default])
+
+        let range = NSRange(location: 12, length: "23".count)
+        newAttributeStr.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 14.0), range: range)
+    
+        
         let valuesSBP = [
-            ChartDataEntry(x: 1.0, y: 10.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), data: "2133123231223 2019/12/23"),
-            ChartDataEntry(x: 2.0, y: 40.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), data: "2133123231223 2019/12/23"),
-            ChartDataEntry(x: 3.0, y: 70.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), data: "2133123231223 2019/12/23"),
-            ChartDataEntry(x: 5.0, y: 201.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), data: "2133123231223 2019/12/23")
+            ChartDataEntry(x: 1.0, y: 10.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), colorHighlight: nil, data: str, textAttributeMarker: newAttributeStr),
+            ChartDataEntry(x: 2.0, y: 40.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), colorHighlight: nil, data: str, textAttributeMarker: newAttributeStr),
+            ChartDataEntry(x: 3.0, y: 70.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), colorHighlight: nil, data: str, textAttributeMarker: newAttributeStr),
+            ChartDataEntry(x: 5.0, y: 201.0, icon: UIImage(named: "ic_he"), iconHighlight: UIImage(named: "ic_he_hl"), colorHighlight: nil, data: str, textAttributeMarker: newAttributeStr)
 
         ]
         let sbpDataSet = LineChartDataSet(entries: valuesSBP, label: "sbpDataSet 1")

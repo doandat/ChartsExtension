@@ -89,6 +89,15 @@ open class ChartDataEntry: ChartDataEntryBase, NSCopying
         self.colorHighlight = colorHighlight
         self.data = data
     }
+    @objc public convenience init(x: Double, y: Double, icon: NSUIImage?, iconHighlight: NSUIImage?, colorHighlight: NSUIColor?, data: Any?, textAttributeMarker: NSMutableAttributedString?)
+    {
+        self.init(x: x, y: y)
+        self.textAttributeMarker = textAttributeMarker
+        self.icon = icon
+        self.iconHighlight = iconHighlight
+        self.colorHighlight = colorHighlight
+        self.data = data
+    }
         
     // MARK: NSObject
     

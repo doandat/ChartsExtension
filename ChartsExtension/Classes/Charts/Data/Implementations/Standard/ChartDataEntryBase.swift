@@ -23,6 +23,7 @@ open class ChartDataEntryBase: NSObject
     /// optional icon image
     @objc open var icon: NSUIImage?
     @objc open var iconHighlight: NSUIImage?
+    @objc open var textAttributeMarker: NSAttributedString?
     @objc open var colorHighlight: NSUIColor?
     
     public override required init()
@@ -76,6 +77,16 @@ open class ChartDataEntryBase: NSObject
         self.colorHighlight = colorHighlight
         self.icon = icon
     }
+    
+    @objc public convenience init(y: Double, icon: NSUIImage?, iconHighlight: NSUIImage?, colorHighlight: NSUIColor?, textAttributeMarker: NSMutableAttributedString?)
+    {
+        self.init(y: y, icon: icon, iconHighlight: iconHighlight, colorHighlight: colorHighlight)
+        self.iconHighlight = iconHighlight
+        self.colorHighlight = colorHighlight
+        self.textAttributeMarker = textAttributeMarker
+        self.icon = icon
+    }
+
     
     /// - Parameters:
     ///   - y: the y value (the actual value of the entry)

@@ -22,7 +22,8 @@ open class BalloonMarker: MarkerImage
     open var insets: UIEdgeInsets
     open var minimumSize = CGSize()
     
-    fileprivate var label: String?
+//    fileprivate var label: String?
+    fileprivate var label: NSAttributedString?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
     fileprivate var _drawAttributes = [NSAttributedString.Key : Any]()
@@ -214,7 +215,8 @@ open class BalloonMarker: MarkerImage
         
         UIGraphicsPushContext(context)
         
-        label.draw(in: rect, withAttributes: _drawAttributes)
+//        label.draw(in: rect, withAttributes: _drawAttributes)
+        label.draw(in: rect)
         
         UIGraphicsPopContext()
         
@@ -224,20 +226,29 @@ open class BalloonMarker: MarkerImage
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
         if let str = entry.data as? String {
-            setLabel(str)
+            setLabel(str, entry)
         }
     }
     
-    open func setLabel(_ newLabel: String)
+    open func setLabel(_ newLabel: String,_ entry: ChartDataEntry)
     {
-        label = newLabel
-        
+//        label = newLabel
         _drawAttributes.removeAll()
         _drawAttributes[.font] = self.font
         _drawAttributes[.paragraphStyle] = _paragraphStyle
         _drawAttributes[.foregroundColor] = self.textColor
         
-        _labelSize = label?.size(withAttributes: _drawAttributes) ?? CGSize.zero
+        _labelSize = newLabel.size(withAttributes: _drawAttributes)
+        
+        
+        if let textAttributeMarker = entry.textAttributeMarker {
+            label = textAttributeMarker
+        } else {
+        let newAttributeStr = NSMutableAttributedString(string: newLabel, attributes: [NSAttributedString.Key.font : self.font,NSAttributedString.Key.foregroundColor : self.textColor, NSAttributedString.Key.paragraphStyle : _paragraphStyle ?? NSParagraphStyle.default])
+            label = newAttributeStr
+        }
+        
+
         
         var size = CGSize()
         size.width = _labelSize.width + self.insets.left + self.insets.right

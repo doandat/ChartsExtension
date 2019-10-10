@@ -27,7 +27,7 @@ public class XYMarkerView: BalloonMarker {
             + xAxisValueFormatter.stringForValue(entry.x, axis: XAxis())
             + ", y: "
             + yFormatter.string(from: NSNumber(floatLiteral: entry.y))!
-        setLabel(string)
+        setLabel(string, entry)
     }
     
 }
