@@ -25,6 +25,8 @@ open class ChartDataEntryBase: NSObject
     @objc open var iconHighlight: NSUIImage?
     @objc open var textAttributeMarker: NSAttributedString?
     @objc open var colorHighlight: NSUIColor?
+    @objc open var isReverseColumn: Bool = false
+    @objc open var dataArray: [Any]?
     
     public override required init()
     {

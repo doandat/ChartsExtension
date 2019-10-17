@@ -308,7 +308,15 @@ open class ChartDataSet: ChartBaseDataSet
 
                     if haveAMatch
                     {
-                        entries.append(entry)
+                        if entry.isReverseColumn, entry.y <= 0 {
+                            if let entryNew = entry.copy() as? ChartDataEntry {
+                                entryNew.y = -entry.y;
+                                entries.append(entryNew)
+                            }
+                        } else {
+                            entries.append(entry)
+                        }
+                        
                     }
                     else if entry.x == xValue
                     {

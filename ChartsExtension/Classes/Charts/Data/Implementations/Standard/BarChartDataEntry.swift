@@ -43,6 +43,29 @@ open class BarChartDataEntry: ChartDataEntry
         self.init(x: x, y: y)
         self.data = data
     }
+    /// Constructor for normal bars (not stacked).
+    public convenience init(x: Double, y: Double, data: Any?,dataArray:[Any]?)
+    {
+        self.init(x: x, y: y)
+        self.data = data
+        self.isReverseColumn = isReverseColumn
+        self.dataArray = dataArray
+    }
+    /// Constructor for normal bars (not stacked).
+    public convenience init(x: Double, y: Double, data: Any?,isReverseColumn: Bool)
+    {
+        self.init(x: x, y: y)
+        self.data = data
+        self.isReverseColumn = isReverseColumn
+    }
+    
+    public convenience init(x: Double, y: Double, data: Any?,isReverseColumn: Bool, dataArray:[Any]?)
+    {
+        self.init(x: x, y: y)
+        self.data = data
+        self.isReverseColumn = isReverseColumn
+        self.dataArray = dataArray
+    }
     
     /// Constructor for normal bars (not stacked).
     public convenience init(x: Double, y: Double, icon: NSUIImage?)

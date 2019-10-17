@@ -106,7 +106,7 @@ open class ChartHighlighter : NSObject, IHighlighter
         
         let trans = chart.getTransformer(forAxis: set.axisDependency)
         let valueToPixelMatrix = trans.valueToPixelMatrix
-
+        
         var entries = set.entriesForXValue(xValue, yValue, x,y,valueToPixelMatrix)
         if entries.count == 0, let closest = set.entryForXValue(xValue, closestToY: .nan, rounding: rounding)
         {

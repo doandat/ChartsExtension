@@ -1,5 +1,5 @@
 PODS:
-  - ChartsExtension (0.1.1)
+  - ChartsExtension (0.1.2)
 
 DEPENDENCIES:
   - ChartsExtension (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChartsExtension: c620986aaac3753cbe237391e5cc077d1dbe7407
+  ChartsExtension: 606709c681036fd867e003c1eae5d31347488306
 
 PODFILE CHECKSUM: f8935017b6d9dbe22e47385017f4cc58320a376b
 

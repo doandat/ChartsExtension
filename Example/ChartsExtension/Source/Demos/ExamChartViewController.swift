@@ -249,7 +249,7 @@ extension ExamChartViewController {
         barChartView.rightAxis.enabled = false
         barChartView.legend.enabled = false
         
-        let marker = BalloonMarker(color: UIColor(white: 1.0, alpha: 1),
+        let marker = ExamBarChartBalloonMarker(color: UIColor(white: 1.0, alpha: 1),
                                    font: .systemFont(ofSize: 14),
                                    textColor: .red,
                                    insets: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8), arrowSize: CGSize(width: 15, height: 3))
@@ -269,10 +269,10 @@ extension ExamChartViewController {
     func setBarChartDataCount(_ count: Int, range: UInt32) {
         //        let values = [ChartDataEntry]()
         let values = [
-            BarChartDataEntry(x: 1.0, y: 10, data: "2133123231223 2019/12/23"),
-            BarChartDataEntry(x: 3.0, y: -10, data: "2133123231223 2019/12/23"),
-            BarChartDataEntry(x: 4.0, y: -10, data: "2133123231223 2019/12/23"),
-            BarChartDataEntry(x: 5.0, y: 10, data: "2133123231223 2019/12/23"),
+            BarChartDataEntry(x: 1.0, y: 10.0, data: "2133123231223 2019/12/23", dataArray:["2019/12/23"]),
+            BarChartDataEntry(x: 3.0, y: -10.0, data: "2133123231223 2019/12/23", dataArray:["2019/12/23"]),
+            BarChartDataEntry(x: 4.0, y: -10.0, data: "2133123231223 2019/12/23", isReverseColumn: true, dataArray:["2019/12/23"]),
+            BarChartDataEntry(x: 4.0, y: 10.0, data: "2133123231223 2019/12/23", dataArray:["2019/12/23"]),
         ]
         
         var arrColor = [
@@ -294,11 +294,11 @@ extension ExamChartViewController {
             set1.drawValuesEnabled = chartType == 3
             set1.valueFont = NSUIFont.systemFont(ofSize: 14)
             set1.barChart = true
-            set1.highlightColor = NSUIColor.green
+            set1.highlightColor = NSUIColor.clear
             
             let data = BarChartData(dataSet: set1)
             data.setValueFormatter(ExamValueFormatter())
-            data.highlightEnabled = false
+            data.highlightEnabled = true
             data.barWidth = 0.5
             barChartView.data = data
             barChartView.fitBars = true

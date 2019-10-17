@@ -12,7 +12,6 @@
 import Foundation
 import UIKit
 
-
 open class BalloonMarker: MarkerImage
 {
     open var color: UIColor
