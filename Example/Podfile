@@ -6,6 +6,5 @@ target 'ChartsExtension_Example' do
   target 'ChartsExtension_Tests' do
     inherit! :search_paths
 
-    
   end
 end

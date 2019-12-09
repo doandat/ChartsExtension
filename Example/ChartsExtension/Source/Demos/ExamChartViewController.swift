@@ -102,7 +102,7 @@ extension ExamChartViewController {
         let marker = BalloonMarker(color: UIColor(white: 1.0, alpha: 1),
                                    font: .systemFont(ofSize: 14),
                                    textColor: .red,
-                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 10, right: 8), arrowSize: CGSize(width: 15, height: 11))
+                                   insets: UIEdgeInsets(top: 4, left: 8, bottom: 10, right: 8), arrowSize: CGSize(width: 15, height: 14), offsetHighlight: 1)
         marker.chartView = lineChartView
         marker.minimumSize = CGSize(width: 40, height: 40)
         marker.drawCirclesEnabled = false
@@ -120,14 +120,18 @@ extension ExamChartViewController {
     
     func setDataType1Count(_ count: Int, range: UInt32) {
 //        let values = [ChartDataEntry]()
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
+        paragraphStyle?.alignment = .center
+        let newAttributeStr = NSMutableAttributedString(string: "2133123231223 2019/12/23", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.paragraphStyle : paragraphStyle ?? NSParagraphStyle.default])
+
         let values = [
-            ChartDataEntry(x: 2, y: 90, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
-            ChartDataEntry(x: 3, y: 20, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
+            ChartDataEntry(x: 2, y: 90, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.darkGray, data: "2133123231223 2019/12/23",textAttributeMarker: newAttributeStr),
+            ChartDataEntry(x: 3, y: 20, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.darkGray, data: "2133123231223 2019/12/23", textAttributeMarker: newAttributeStr),
             ChartDataEntry(x: 4, y: 50, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: nil),
             ChartDataEntry(x: 5, y: 120, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
             ChartDataEntry(x: 6, y: 90, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
             ChartDataEntry(x: 7, y: 190, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
-            ChartDataEntry(x: 8, y: 200, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
+            ChartDataEntry(x: 8, y: 250, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23"),
             ChartDataEntry(x: 9, y: 98, icon: nil, iconHighlight: nil, colorHighlight: NSUIColor.red, data: "2133123231223 2019/12/23")
         ]
 //        let values = [
@@ -138,15 +142,16 @@ extension ExamChartViewController {
 //            ChartDataEntry(x: 5, y: 120, data: "2133123231223 2019/12/23", iconHighlight: UIColor.red),
 //            ChartDataEntry(x: 7, y: 190, data: "2133123231223 2019/12/23", iconHighlight: UIColor.red)
 //        ]
-        
+        let colorCircles = [NSUIColor.darkGray,NSUIColor.darkGray,NSUIColor.red,NSUIColor.red,NSUIColor.red,NSUIColor.red,NSUIColor.red,NSUIColor.red,NSUIColor.red,NSUIColor.red]
         let set1 = LineChartDataSet(entries: values, label: "DataSet 1")
         set1.drawIconsEnabled = false
         set1.drawCirclesEnabled = true
         set1.lineDashLengths = [5, 0]
         set1.highlightLineDashLengths = [5, 2.5]
-        set1.setColor(.white)
-        set1.setCircleColor(.white)
+        set1.setColor(.gray)
+        set1.circleColors = colorCircles
         set1.circleRadius = 5.0
+        set1.circleRadiusHighlightMargin = 1.0;
         set1.lineWidth = 2
         set1.drawCircleHoleEnabled = false
         set1.valueFont = .systemFont(ofSize: 14)
@@ -275,7 +280,7 @@ extension ExamChartViewController {
             BarChartDataEntry(x: 4.0, y: 10.0, data: "2133123231223 2019/12/23", dataArray:["2019/12/23"]),
         ]
         
-        var arrColor = [
+        let arrColor = [
             NSUIColor.red,
             NSUIColor.black,
             NSUIColor.black,

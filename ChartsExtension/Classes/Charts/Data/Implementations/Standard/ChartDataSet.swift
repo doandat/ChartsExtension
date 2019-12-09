@@ -234,12 +234,19 @@ open class ChartDataSet: ChartBaseDataSet
             var entry = self[m]
             
             var haveAMatch = false
-            let offset = CGFloat(10.0)
+            var offset = CGFloat(10.0)
             if let valueToPixelMatrix = valueToPixelMatrix as? CGAffineTransform {
                 var pt = CGPoint()
                 pt.x = CGFloat(entry.x)
                 pt.y = CGFloat(entry.y)
                 pt = pt.applying(valueToPixelMatrix)
+                
+                var ptZeroXY = CGPoint()
+                ptZeroXY.x = CGFloat(0)
+                ptZeroXY.y = CGFloat(0)
+                ptZeroXY = ptZeroXY.applying(valueToPixelMatrix)
+                
+                offset = CGFloat(0.5*Double((pt.x - ptZeroXY.x))/entry.x)
                 
                 if let x = x as? CGFloat,let y = y as? CGFloat, pt.x - offset <= x && pt.x + offset >= x {
                     if barChart {
@@ -247,6 +254,7 @@ open class ChartDataSet: ChartBaseDataSet
                         ptZero.x = CGFloat(entry.x)
                         ptZero.y = CGFloat(0)
                         ptZero = ptZero.applying(valueToPixelMatrix)
+                        
                         if (entry.y > 0 && pt.y <= y && y <= ptZero.y) || (entry.y < 0 && pt.y >= y && y >= ptZero.y) {
                             haveAMatch = true
                         }

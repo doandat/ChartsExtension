@@ -744,15 +744,37 @@ open class LineChartRenderer: LineRadarRenderer
 //                drawHighlightLines(context: context, point: pt, set: set)
                 if let colorHighlight = e.colorHighlight {
                     let circleRadius = set.circleRadius
+                    let circleRadiusHighlightMargin = set.circleRadiusHighlightMargin
                     context.saveGState()
+//                    var rectCircles = CGRect()
+//                    rectCircles.origin.x = pt.x - circleRadius
+//                    rectCircles.origin.y = pt.y - circleRadius
+//                    rectCircles.size.width = circleRadius * 2
+//                    rectCircles.size.height = circleRadius * 2
+//
+//                    context.setFillColor(colorHighlight.cgColor)
+//                    context.fillEllipse(in: rectCircles)
+                    
+                    //
                     var rectCircles = CGRect()
-                    rectCircles.origin.x = pt.x - circleRadius
-                    rectCircles.origin.y = pt.y - circleRadius
-                    rectCircles.size.width = circleRadius * 2
-                    rectCircles.size.height = circleRadius * 2
+                    rectCircles.origin.x = pt.x - circleRadius - circleRadiusHighlightMargin - 2
+                    rectCircles.origin.y = pt.y - circleRadius - circleRadiusHighlightMargin - 2
+                    rectCircles.size.width = circleRadius * 2 + (circleRadiusHighlightMargin+2)*2
+                    rectCircles.size.height = circleRadius * 2 + (circleRadiusHighlightMargin+2)*2
+                    
+                    context.setFillColor(UIColor.white.cgColor)
+                    context.fillEllipse(in: rectCircles)
+                    
+                    var rectCirclesHighlight = CGRect()
+                    rectCirclesHighlight.origin.x = pt.x - circleRadius-circleRadiusHighlightMargin
+                    rectCirclesHighlight.origin.y = pt.y - circleRadius-circleRadiusHighlightMargin
+                    rectCirclesHighlight.size.width = (circleRadius+circleRadiusHighlightMargin) * 2
+                    rectCirclesHighlight.size.height = (circleRadius+circleRadiusHighlightMargin) * 2
                     
                     context.setFillColor(colorHighlight.cgColor)
-                    context.fillEllipse(in: rectCircles)
+                    context.fillEllipse(in: rectCirclesHighlight)
+                    ///
+                    
                     context.restoreGState()
                 }
             }

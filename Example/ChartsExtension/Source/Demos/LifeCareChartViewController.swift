@@ -303,7 +303,7 @@ extension LifeCareChartViewController {
             BarChartDataEntry(x: 5.0, y: 150, data: "2133123231223 2019/12/23"),
         ]
         
-        var arrColor = [
+        let arrColor = [
             NSUIColor.red,
             NSUIColor.black,
             NSUIColor.black,

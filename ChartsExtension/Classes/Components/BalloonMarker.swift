@@ -16,6 +16,7 @@ open class BalloonMarker: MarkerImage
 {
     open var color: UIColor
     open var arrowSize = CGSize(width: 15, height: 11)
+    open var circleRadiusHighlightMargin: CGFloat = 0.0
     open var font: UIFont
     open var textColor: UIColor
     open var insets: UIEdgeInsets
@@ -26,6 +27,20 @@ open class BalloonMarker: MarkerImage
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
     fileprivate var _drawAttributes = [NSAttributedString.Key : Any]()
+    
+    public init(color: UIColor, font: UIFont, textColor: UIColor, insets: UIEdgeInsets, arrowSize: CGSize, offsetHighlight: CGFloat)
+    {
+        self.color = color
+        self.font = font
+        self.textColor = textColor
+        self.insets = insets
+        self.arrowSize = arrowSize
+        
+        _paragraphStyle = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
+        _paragraphStyle?.alignment = .center
+        self.circleRadiusHighlightMargin = offsetHighlight;
+        super.init()
+    }
     
     public init(color: UIColor, font: UIFont, textColor: UIColor, insets: UIEdgeInsets, arrowSize: CGSize)
     {
@@ -84,22 +99,11 @@ open class BalloonMarker: MarkerImage
         
         return offset
     }
-    
+
+    /*
     open override func draw(context: CGContext, point: CGPoint)
     {
         guard let label = label else { return }
-        if isDrawCirclesEnabled {
-            context.saveGState()
-            var rectCircles = CGRect()
-            rectCircles.origin.x = point.x - circleRadius
-            rectCircles.origin.y = point.y - circleRadius
-            rectCircles.size.width = circleRadius * 2
-            rectCircles.size.height = circleRadius * 2
-            
-            context.setFillColor(getCircleColor().cgColor)
-            context.fillEllipse(in: rectCircles)
-            context.restoreGState()
-        }
         
         let offset = self.offsetForDrawing(atPoint: point)
         let size = self.size
@@ -113,11 +117,124 @@ open class BalloonMarker: MarkerImage
         rect.origin.y -= size.height
         
         context.saveGState()
+
+        context.setFillColor(color.cgColor)
+
+        if offset.y > 0
+        {
+            context.beginPath()
+            context.move(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y + arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y + arrowSize.height))
+            //arrow vertex
+            context.addLine(to: CGPoint(
+                x: point.x,
+                y: point.y))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
+                y: rect.origin.y + arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + rect.size.width,
+                y: rect.origin.y + arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + rect.size.width,
+                y: rect.origin.y + rect.size.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y + rect.size.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y + arrowSize.height))
+            context.fillPath()
+        }
+        else
+        {
+            context.beginPath()
+            context.move(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + rect.size.width,
+                y: rect.origin.y))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + rect.size.width,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            //arrow vertex
+            context.addLine(to: CGPoint(
+                x: point.x,
+                y: point.y))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x,
+                y: rect.origin.y))
+            context.fillPath()
+        }
+        
+        if offset.y > 0 {
+            rect.origin.y += self.insets.top + arrowSize.height
+        } else {
+            rect.origin.y += self.insets.top
+        }
+
+        rect.size.height -= self.insets.top + self.insets.bottom
+        
+        UIGraphicsPushContext(context)
+        
+//        label.draw(in: rect, withAttributes: _drawAttributes)
+        label.draw(in: rect)
+        
+        UIGraphicsPopContext()
+        
+        context.restoreGState()
+    }
+*/
+    
+    
+    open override func draw(context: CGContext, point: CGPoint)
+    {
+        guard let label = label else { return }
+//        if isDrawCirclesEnabled {
+//            context.saveGState()
+//            var rectCircles = CGRect()
+//            rectCircles.origin.x = point.x - circleRadius
+//            rectCircles.origin.y = point.y - circleRadius
+//            rectCircles.size.width = circleRadius * 2
+//            rectCircles.size.height = circleRadius * 2
+//
+//            context.setFillColor(getCircleColor().cgColor)
+//            context.fillEllipse(in: rectCircles)
+//            context.restoreGState()
+//        }
+        
+        let offset = self.offsetForDrawing(atPoint: point)
+        let size = self.size
+        
+        var rect = CGRect(
+            origin: CGPoint(
+                x: point.x + offset.x,
+                y: point.y + offset.y),
+            size: size)
+        rect.origin.x -= size.width / 2.0
+        
+        context.saveGState()
         
         context.setFillColor(color.cgColor)
 
         if offset.y > 0
         {
+            rect.origin.y -= size.height - self.circleRadiusHighlightMargin-7
+//            rect.origin.y += self.circleRadiusHighlightMargin+1
             let newRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: rect.size.width, height: rect.size.height-arrowSize.height)
             let clipPath: CGPath = UIBezierPath(roundedRect: newRect, cornerRadius: newRect.size.height/2).cgPath
 
@@ -126,6 +243,26 @@ open class BalloonMarker: MarkerImage
 
             context.closePath()
             context.fillPath()
+            
+            context.beginPath()
+//            context.setFillColor(NSUIColor.blue.cgColor)
+            context.move(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y))
+            context.addLine(to: CGPoint(
+                x: point.x,
+                y: point.y+circleRadius+self.circleRadiusHighlightMargin+1))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
+                y: rect.origin.y))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y))
+            context.fillPath()
+            context.strokePath()
+
+            
+            
 //            
 //            context.beginPath()
 //            context.move(to: CGPoint(
@@ -157,6 +294,7 @@ open class BalloonMarker: MarkerImage
         }
         else
         {
+            rect.origin.y -= size.height + self.circleRadiusHighlightMargin+1
 //            let path = UIBezierPath(roundedRect: rect, cornerRadius: 5.0)
 //            path.addClip()
             
@@ -170,8 +308,24 @@ open class BalloonMarker: MarkerImage
             context.closePath()
             context.fillPath()
 //            ctx.restoreGState()
-
             
+            context.beginPath()
+//            context.setFillColor(UIColor.black.cgColor)
+
+            context.move(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: point.x,
+                y: point.y - circleRadius - self.circleRadiusHighlightMargin - 1))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.addLine(to: CGPoint(
+                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+                y: rect.origin.y + rect.size.height - arrowSize.height))
+            context.fillPath()
+            context.strokePath()
 
 //            context.beginPath()
 //            context.move(to: CGPoint(
@@ -183,16 +337,16 @@ open class BalloonMarker: MarkerImage
 //            context.addLine(to: CGPoint(
 //                x: rect.origin.x + rect.size.width,
 //                y: rect.origin.y + rect.size.height - arrowSize.height))
-////            context.addLine(to: CGPoint(
-////                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
-////                y: rect.origin.y + rect.size.height - arrowSize.height))
-//////            //arrow vertex
-////            context.addLine(to: CGPoint(
-////                x: point.x,
-////                y: point.y))
-//////            context.addLine(to: CGPoint(
-//////                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
-//////                y: rect.origin.y + rect.size.height - arrowSize.height))
+//            context.addLine(to: CGPoint(
+//                x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
+//                y: rect.origin.y + rect.size.height - arrowSize.height))
+////            //arrow vertex
+//            context.addLine(to: CGPoint(
+//                x: point.x,
+//                y: point.y))
+//            context.addLine(to: CGPoint(
+//                x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
+//                y: rect.origin.y + rect.size.height - arrowSize.height))
 //            context.addLine(to: CGPoint(
 //                x: rect.origin.x,
 //                y: rect.origin.y + rect.size.height - arrowSize.height))
@@ -221,6 +375,7 @@ open class BalloonMarker: MarkerImage
         
         context.restoreGState()
     }
+//    */
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {

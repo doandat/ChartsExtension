@@ -1,6 +1,6 @@
 {
   "name": "ChartsExtension",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "summary": "ChartsExtension is extension from Charts lib",
   "swift_versions": "5.0",
   "description": "ChartsExtension is extension from Charts lib - Use for Dr.HereOnline",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/doandat/ChartsExtension.git",
-    "tag": "0.1.2"
+    "tag": "0.1.5"
   },
   "platforms": {
     "ios": "9.0"

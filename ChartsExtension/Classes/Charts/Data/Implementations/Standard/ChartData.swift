@@ -405,7 +405,7 @@ open class ChartData: NSObject
         {
             return nil
         }
-        let data = _dataSets[index]
+//        let data = _dataSets[index]
         return _dataSets[index]
     }
     

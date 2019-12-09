@@ -71,6 +71,8 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         
     /// The radius of the drawn circles.
     open var circleRadius = CGFloat(8.0)
+    open var circleRadiusHighlightMargin = CGFloat(0.0)
+    
     
     /// The hole radius of the drawn circles
     open var circleHoleRadius = CGFloat(4.0)
@@ -160,6 +162,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.circleColors = circleColors
         copy.circleHoleColor = circleHoleColor
         copy.circleRadius = circleRadius
+        copy.circleRadiusHighlightMargin = circleRadiusHighlightMargin
         copy.circleHoleRadius = circleHoleRadius
         copy.cubicIntensity = cubicIntensity
         copy.lineDashPhase = lineDashPhase
