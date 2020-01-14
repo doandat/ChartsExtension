@@ -233,7 +233,8 @@ open class BalloonMarker: MarkerImage
 
         if offset.y > 0
         {
-            rect.origin.y -= size.height - self.circleRadiusHighlightMargin-7
+            let offsetY = CGFloat(self.circleRadius > 0 ? 7 : 1)
+            rect.origin.y -= size.height - self.circleRadiusHighlightMargin-offsetY
 //            rect.origin.y += self.circleRadiusHighlightMargin+1
             let newRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: rect.size.width, height: rect.size.height-arrowSize.height)
             let clipPath: CGPath = UIBezierPath(roundedRect: newRect, cornerRadius: newRect.size.height/2).cgPath
