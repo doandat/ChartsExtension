@@ -393,8 +393,11 @@ open class BalloonMarker: MarkerImage
         _drawAttributes[.paragraphStyle] = _paragraphStyle
         _drawAttributes[.foregroundColor] = self.textColor
         
-        _labelSize = newLabel.size(withAttributes: _drawAttributes)
-        
+//        _labelSize = newLabel.size(withAttributes: _drawAttributes)
+        let newStr = newLabel.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        _labelSize = newStr.size(withAttributes: _drawAttributes)
+
+
         
         if let textAttributeMarker = entry.textAttributeMarker {
             label = textAttributeMarker
