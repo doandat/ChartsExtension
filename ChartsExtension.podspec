@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ChartsExtension'
-  s.version          = '0.1.9.1'
+  s.version          = '0.1.9'
   s.summary          = 'ChartsExtension is extension from Charts lib'
   s.swift_version    = '5.0'
 
