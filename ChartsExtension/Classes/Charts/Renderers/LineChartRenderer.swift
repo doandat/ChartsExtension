@@ -514,16 +514,7 @@ open class LineChartRenderer: LineRadarRenderer
                                 y: pt.y - CGFloat(valOffset) - valueFont.lineHeight),
                             align: .center,
                             attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: dataSet.valueTextColorAt(j)])
-                    }
-                    
-                    if let icon = e.icon, dataSet.isDrawIconsEnabled
-                    {
-                        ChartUtils.drawImage(context: context,
-                                             image: icon,
-                                             x: pt.x + iconsOffset.x,
-                                             y: pt.y + iconsOffset.y,
-                                             size: icon.size)
-                    }
+                    }                    
                 }
             }
         }
@@ -630,6 +621,16 @@ open class LineChartRenderer: LineRadarRenderer
 
                 if !dataSet.isDrawCirclesEnabled
                 {
+                    if let icon = e.icon, dataSet.isDrawIconsEnabled
+                    {
+//                        print("dat-debug-drawData icon \(e.x) \(e.y)")
+                        let iconsOffset = dataSet.iconsOffset
+                        ChartUtils.drawImage(context: context,
+                                             image: icon,
+                                             x: pt.x + iconsOffset.x,
+                                             y: pt.y + iconsOffset.y,
+                                             size: icon.size)
+                    }
                     continue
                 }
 

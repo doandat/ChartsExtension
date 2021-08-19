@@ -142,7 +142,7 @@ open class ChartHighlighter : NSObject, IHighlighter
             {
                 let cDistance = getDistance(x1: x, y1: y, x2: high.xPx, y2: high.yPx)
 
-                if cDistance < distance
+                if cDistance <= distance
                 {
                     closest = high
                     distance = cDistance

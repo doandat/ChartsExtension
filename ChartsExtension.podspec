@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ChartsExtension'
-  s.version          = '0.1.9'
+  s.version          = '0.2.1'
   s.summary          = 'ChartsExtension is extension from Charts lib'
   s.swift_version    = '5.0'
 
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/doandat/ChartsExtension.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'ChartsExtension/Classes/**/*'
   
